@@ -25,3 +25,88 @@ This repository contains a simple HTTP server implementation in Python. It serve
    
 2. Alternatively, the server is set up to handle the SIGINT signal and will shut down gracefully.
 
+## Code Explanation
+
+###Import Modules
+
+```bash
+import http.server
+```
+This module provides basic classes for building web servers in Python.
+It includes the BaseHTTPRequestHandler class, which we use to handle HTTP requests.
+
+```bash
+import socketserver
+```
+This module provides the TCPServer class, which allows us to create a TCP server.
+We use this class to create our HTTP server by passing it an instance of our request handler.
+
+```bash
+import signal
+```
+This module provides mechanisms to handle asynchronous events using signal handlers.
+In our code, we use it to handle the SIGINT signal, which is typically sent when the user presses Ctrl+C in the terminal
+This allows us to gracefully shut down the server.
+
+```bash
+import sys
+```
+This module provides access to some variables used or maintained by the Python interpreter
+and to functions that interact strongly with the interpreter.
+We use it to call sys.exit(0), which cleanly exits the program when the server is shut down.
+
+###Classes and Functions
+
+```bash
+class MyHandler(http.server.BaseHTTPRequestHandler):
+```
+This class inherits from BaseHTTPRequestHandler and handles HTTP GET requests.
+The do_GET method is overridden to provide a custom response when a GET request is received.
+
+```bash
+def do_GET(self):
+```
+This method is called whenever a GET request is received by the server.
+Here, it sends a response with status code 200 (OK),
+sets the content type to text/html, and sends an HTML message.
+
+###Signal Handler
+
+```bash
+def signal_handler(signal, frame):
+    print('Stopping server...')
+    httpd.shutdown()
+    sys.exit(0)
+```
+This function is defined to handle the SIGINT signal.
+When Ctrl+C is pressed, this function is called.
+It prints a message, shuts down the server gracefully using httpd.shutdown(),
+and exits the program with sys.exit(0).
+
+###Server Setup and Execution
+
+```bash
+with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
+    signal.signal(signal.SIGINT, signal_handler)
+    print(f"Serving at port {PORT}")
+    httpd.serve_forever()
+```
+
+```bash
+with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
+```
+This line creates an instance of TCPServer.
+The server listens on the specified port (PORT) and uses the MyHandler class to handle requests.
+The with statement ensures that the server is properly cleaned up when it is no longer needed.
+
+```bash
+signal.signal(signal.SIGINT, signal_handler)
+```
+This line registers the signal_handler function to handle SIGINT signals.
+This allows the server to be stopped gracefully when Ctrl+C is pressed.
+
+```bash
+httpd.serve_forever()
+```
+This method starts the server and keeps it running,
+listening for and handling requests indefinitely.
