@@ -27,7 +27,9 @@ This repository contains a simple HTTP server implementation in Python. It serve
 
 # Code Explanation
 
-##Import Modules
+
+
+# Import Modules
 
 ```bash
 import http.server
@@ -55,7 +57,10 @@ This module provides access to some variables used or maintained by the Python i
 and to functions that interact strongly with the interpreter.
 We use it to call sys.exit(0), which cleanly exits the program when the server is shut down.
 
-##Classes and Functions
+
+
+
+### Classes and Functions
 
 ```bash
 class MyHandler(http.server.BaseHTTPRequestHandler):
@@ -70,7 +75,10 @@ This method is called whenever a GET request is received by the server.
 Here, it sends a response with status code 200 (OK),
 sets the content type to text/html, and sends an HTML message.
 
-##Signal Handler
+
+
+
+### Signal Handler
 
 ```bash
 def signal_handler(signal, frame):
@@ -83,7 +91,10 @@ When Ctrl+C is pressed, this function is called.
 It prints a message, shuts down the server gracefully using httpd.shutdown(),
 and exits the program with sys.exit(0).
 
-##Server Setup and Execution
+
+
+
+### Server Setup and Execution
 
 ```bash
 with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
