@@ -2,7 +2,7 @@
 
 This repository contains a simple HTTP server implementation in Python. It serves HTTP requests and can be stopped manually or programmatically.
 
-## How to Run
+# How to Run
 
 1. Make sure you have Python installed. You can download it from [python.org](https://www.python.org/downloads/).
 
@@ -19,15 +19,15 @@ This repository contains a simple HTTP server implementation in Python. It serve
 5. The server will start and listen on port 1612.
    Open a web browser and go to http://localhost:1612 to see the server response. 
 
-## How to Stop
+# How to Stop
 
 1. To stop the server, press Ctrl+C in the terminal where the server is running.
    
 2. Alternatively, the server is set up to handle the SIGINT signal and will shut down gracefully.
 
-## Code Explanation
+# Code Explanation
 
-###Import Modules
+##Import Modules
 
 ```bash
 import http.server
@@ -55,7 +55,7 @@ This module provides access to some variables used or maintained by the Python i
 and to functions that interact strongly with the interpreter.
 We use it to call sys.exit(0), which cleanly exits the program when the server is shut down.
 
-###Classes and Functions
+##Classes and Functions
 
 ```bash
 class MyHandler(http.server.BaseHTTPRequestHandler):
@@ -70,7 +70,7 @@ This method is called whenever a GET request is received by the server.
 Here, it sends a response with status code 200 (OK),
 sets the content type to text/html, and sends an HTML message.
 
-###Signal Handler
+##Signal Handler
 
 ```bash
 def signal_handler(signal, frame):
@@ -83,7 +83,7 @@ When Ctrl+C is pressed, this function is called.
 It prints a message, shuts down the server gracefully using httpd.shutdown(),
 and exits the program with sys.exit(0).
 
-###Server Setup and Execution
+##Server Setup and Execution
 
 ```bash
 with socketserver.TCPServer(("", PORT), MyHandler) as httpd:
