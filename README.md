@@ -14,3 +14,14 @@ This repository contains a simple HTTP server implementation in Python. It serve
 
    ```sh
    python server.py
+
+   ```
+5. The server will start and listen on port 8000.
+   Open a web browser and go to http://localhost:8000 to see the server response. 
+
+## How to Stop
+
+1. To stop the server, press Ctrl+C in the terminal where the server is running.
+   
+2. Alternatively, the server is set up to handle the SIGINT signal and will shut down gracefully.
+
