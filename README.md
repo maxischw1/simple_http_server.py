@@ -16,8 +16,8 @@ This repository contains a simple HTTP server implementation in Python. It serve
    python server.py
 
    ```
-5. The server will start and listen on port 8000.
-   Open a web browser and go to http://localhost:8000 to see the server response. 
+5. The server will start and listen on port 1612.
+   Open a web browser and go to http://localhost:1612 to see the server response. 
 
 ## How to Stop
 
